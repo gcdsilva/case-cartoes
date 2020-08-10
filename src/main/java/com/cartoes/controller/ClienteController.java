@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cartoes.entity.Cliente;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/cliente")
@@ -29,7 +30,12 @@ public class ClienteController {
 
     @PostMapping()
     public ResponseEntity<Cliente> criar(@RequestBody Cliente cliente) {
-        return new ResponseEntity<Cliente>(service.criar(cliente), new HttpHeaders(), HttpStatus.CREATED);
+
+        if(cliente.getName() != null){
+            return new ResponseEntity<Cliente>(service.criar(cliente), new HttpHeaders(), HttpStatus.CREATED);
+        }else {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Atributo 'name' não pode estar vazio");
+        }
     }
 
 }
