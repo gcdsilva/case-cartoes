@@ -17,7 +17,7 @@ public class Cliente {
     private Long clienteId;
 
     @NotNull
-    private String name;
+    private String nome;
 
 
     public Cliente() {
@@ -25,7 +25,7 @@ public class Cliente {
 
     public Cliente(Long clienteId, String name) {
         this.clienteId = clienteId;
-        this.name = name;
+        this.nome = name;
     }
 
     public Long getClienteId() {
@@ -38,11 +38,11 @@ public class Cliente {
 
 
     public String getName() {
-        return name;
+        return nome;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nome = name;
     }
 
 }

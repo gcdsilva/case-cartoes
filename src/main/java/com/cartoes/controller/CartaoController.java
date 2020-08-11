@@ -20,6 +20,11 @@ public class CartaoController {
 	@Autowired
 	CartaoService service;
 
+	@PostMapping()
+	public ResponseEntity<Cartao> criar(@RequestBody EntradaCartao entradaCartao) {
+		return new ResponseEntity<Cartao>(service.criar(entradaCartao), new HttpHeaders(), HttpStatus.CREATED);
+	}
+
 	@GetMapping("/{numero}")
 	public List<Cartao> buscarPorNumero(@PathVariable("numero") String id) {
 		return service.buscaPorNumero(id);
